@@ -1,0 +1,4 @@
+*.pyc
+sql_showcase/order_app/migrations/
+sql_showcase/order_app/sample_data/
+sql_showcase/db.sqlite3
