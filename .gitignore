@@ -1,1 +1,7 @@
 Recommender/Kmeans/__pycache__/
+sql_showcase/order_app/migrations/
+sql_showcase/order_app/sample_data/
+sql_showcase/order_app/__pycache__/
+sql_showcase/order_app/management/command/__pycache__/
+sql_showcase/sql_showcase/__pycache__/
+sql_showcase/db.sqlite3
