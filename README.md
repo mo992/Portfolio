@@ -1,2 +1,2 @@
 # Portfolio
-This private repository is designed to showcase machine learning projects and applications.
+This repository is designed to showcase python projects and applications.
