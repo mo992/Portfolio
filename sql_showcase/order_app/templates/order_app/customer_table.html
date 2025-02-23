@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>客戶資料表格</title>
+    <link rel="stylesheet" href="{% static 'order_app/style.css' %}">
+</head>
+<body>
+    <h2 style="text-align:center;">客戶資料表格</h2>
+    <table id="customer-table">
+        <thead>
+            <tr>
+                <th>客戶ID</th>
+                <th>客戶姓名</th>
+                <th>電子郵件</th>
+                <th>手機號碼</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+
+    <script src="{% static 'order_app/customer_table.js' %}"></script>
+</body>
+</html>

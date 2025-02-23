@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>客戶每月消費查詢</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        select, button {
+            padding: 8px 12px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        table {
+            width: 60%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <h2>查詢客戶每月消費總金額</h2>
+    <div class="container">
+        <label for="customer-select">選擇客戶：</label>
+        <select id="customer-select">
+            <option value="">請選擇客戶</option>
+        </select>
+        <button id="query-btn">查詢</button>
+    </div>
+    
+    <div class="container" id="result"></div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('http://127.0.0.1:8000/order_app/api/customers/')
+                .then(response => response.json())
+                .then(data => {
+                    const customerSelect = document.getElementById('customer-select');
+                    data.forEach(customer => {
+                        const option = document.createElement('option');
+                        option.value = customer.customer_id;
+                        option.setAttribute('data-name', customer.customer_name);
+                        option.textContent = `${customer.customer_name} (${customer.customer_id})`;
+                        customerSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('無法載入客戶名單:', error));
+        });
+
+        document.getElementById('query-btn').addEventListener('click', function () {
+            const customerSelect = document.getElementById('customer-select');
+            const customerId = customerSelect.value;
+            const customerName = customerSelect.options[customerSelect.selectedIndex].getAttribute('data-name');
+
+            if (!customerId) {
+                alert('請先選擇客戶');
+                return;
+            }
+
+            const apiUrl = `http://127.0.0.1:8000/order_app/api/customer-monthly-spending/?customer_id=${customerId}`;
+
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    let html = `<h3>客戶名稱：${customerName} (${customerId}) 各月消費總金額</h3>`;
+                    if (data.length === 0) {
+                        html += `<p>此客戶沒有消費記錄。</p>`;
+                    } else {
+                        html += `<table>
+                                    <thead>
+                                        <tr>
+                                            <th>月份</th>
+                                            <th>總消費金額 (元)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>`;
+                        data.forEach(record => {
+                            html += `<tr>
+                                        <td>${record.month} 月</td>
+                                        <td>${record.total}</td>
+                                    </tr>`;
+                        });
+                        html += `</tbody></table>`;
+                    }
+                    document.getElementById('result').innerHTML = html;
+                })
+                .catch(error => {
+                    document.getElementById('result').innerHTML = `<p style="color:red;">查詢失敗: ${error}</p>`;
+                    console.error('Error fetching data:', error);
+                });
+        });
+    </script>
+</body>
+</html>
