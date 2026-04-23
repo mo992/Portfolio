@@ -11,24 +11,24 @@
 
 **瑕疵檢測**
 
-![](https://github.com/mo992/Portfolio/blob/main/Defect-Inspection-OCR/Results/Patches-Result.jpg)
+![](https://raw.githubusercontent.com/mo992/Portfolio/main/Defect-Inspection-OCR/Results/Patches-Result.jpg)
 
-![](https://github.com/mo992/Portfolio/blob/main/Defect-Inspection-OCR/Results/Mix-Result.jpg)
+![](https://raw.githubusercontent.com/mo992/Portfolio/main/Defect-Inspection-OCR/Results/Mix-Result.jpg)
 
-![](https://github.com/mo992/Portfolio/blob/main/Defect-Inspection-OCR/Results/Inclusion-Result.jpg)
+![](https://raw.githubusercontent.com/mo992/Portfolio/main/Defect-Inspection-OCR/Results/Inclusion-Result.jpg)
 
-![](https://github.com/mo992/Portfolio/blob/main/Defect-Inspection-OCR/Results/Rolled-In-Scale-Result.jpg)
+![](https://raw.githubusercontent.com/mo992/Portfolio/main/Defect-Inspection-OCR/Results/Rolled-In-Scale-Result.jpg)
 
-![](https://github.com/mo992/Portfolio/blob/main/Defect-Inspection-OCR/Results/Pitted-Surface-Result.jpg)
+![](https://raw.githubusercontent.com/mo992/Portfolio/main/Defect-Inspection-OCR/Results/Pitted-Surface-Result.jpg)
 
 **OCR 流程**
 
-![](https://github.com/mo992/Portfolio/blob/main/Defect-Inspection-OCR/Results/OCR-Result.jpg)
+![](https://raw.githubusercontent.com/mo992/Portfolio/main/Defect-Inspection-OCR/Results/OCR-Result.jpg)
 
 **前端介面**
 
-![](https://github.com/mo992/Portfolio/blob/main/Defect-Inspection-OCR/Results/UI-Detect-inspection.jpg)
+![](https://raw.githubusercontent.com/mo992/Portfolio/main/Defect-Inspection-OCR/Results/UI-Detect-inspection.jpg)
 
-![](https://github.com/mo992/Portfolio/blob/main/Defect-Inspection-OCR/Results/UI-OCR.jpg)
+![](https://raw.githubusercontent.com/mo992/Portfolio/main/Defect-Inspection-OCR/Results/UI-OCR.jpg)
 
 **授權**：PolyForm Noncommercial 1.0.0 — 禁止商業使用與再散布。
