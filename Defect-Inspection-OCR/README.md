@@ -10,6 +10,7 @@
 **Demo**
 
 **瑕疵檢測**
+<div align="center">
 
 ![](https://raw.githubusercontent.com/mo992/Portfolio/main/Defect-Inspection-OCR/Results/Patches-Result.png)
 
@@ -20,15 +21,22 @@
 ![](https://raw.githubusercontent.com/mo992/Portfolio/main/Defect-Inspection-OCR/Results/Rolled-In-Scale-Result.png)
 
 ![](https://raw.githubusercontent.com/mo992/Portfolio/main/Defect-Inspection-OCR/Results/Pitted-Surface-Result.png)
+</div>
 
 **OCR 流程**
+<div align="center">
 
 ![](https://raw.githubusercontent.com/mo992/Portfolio/main/Defect-Inspection-OCR/Results/OCR-Result.png)
 
+</div>
+
 **前端介面**
+<div align="center">
 
 ![](https://raw.githubusercontent.com/mo992/Portfolio/main/Defect-Inspection-OCR/Results/UI-Detect-inspection.png)
 
 ![](https://raw.githubusercontent.com/mo992/Portfolio/main/Defect-Inspection-OCR/Results/UI-OCR.png)
+
+</div>
 
 **授權**：PolyForm Noncommercial 1.0.0 — 禁止商業使用與再散布。
