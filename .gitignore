@@ -1,0 +1,143 @@
+# =============================================================================
+# OS & editors
+# =============================================================================
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+
+# =============================================================================
+# Logs / secrets / env
+# =============================================================================
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+.env.local
+.env.*.local
+*.local
+!.env.example
+
+# =============================================================================
+# Python
+# =============================================================================
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+# Virtual environments (local asrstt + generic names)
+asrstt/
+.asrstt/
+.venv/
+venv/
+env/
+
+# =============================================================================
+# Node / package managers  (★ blocks the 649 MB node_modules/.pnpm store)
+# =============================================================================
+node_modules/
+node_modules/.pnpm/
+.pnpm-store/
+.npm/
+.yarn/
+.yarn-integrity
+.pnp.*
+
+# =============================================================================
+# Build artifacts (Vite, TypeScript, Python)
+# =============================================================================
+dist/
+dist-ssr/
+build/
+coverage/
+.vite/
+
+# =============================================================================
+# Model weight formats — any path, any depth
+# =============================================================================
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.h5
+*.pkl
+*.joblib
+*.tflite
+*.gguf
+*.pb
+*.onnx
+*.onnx_data
+*.msgpack
+*.bin
+pytorch_model*.bin
+model*.safetensors
+diffusion_pytorch_model*.safetensors
+
+# =============================================================================
+# WASM runtime assets (Vite dist + sherpa-onnx)
+# =============================================================================
+*.wasm
+*.wasm.map
+# sherpa-onnx ships an .asr.data blob alongside the .wasm; not covered above
+wasm_asr/sherpa-onnx-wasm-simd-v1.12.36-zh-en-asr-zipformer/sherpa-onnx-wasm-main-asr.data
+
+# =============================================================================
+# ML caches (Hugging Face / ONNX Runtime / Ultralytics)
+# =============================================================================
+.cache/
+hf_cache/
+.hf_cache/
+huggingface_cache/
+.ort_cache/
+.ultralytics/
+
+# =============================================================================
+# Training / experiment outputs
+# =============================================================================
+runs/
+wandb/
+mlruns/
+lightning_logs/
+tensorboard_logs/
+checkpoints/
+
+# =============================================================================
+# Raw / large datasets — evaluation fixtures live in server/evaluation/fixtures/
+# =============================================================================
+data/
+datasets/
+raw_data/
+labels/
+annotations/
+
+# =============================================================================
+# Autodistill auto-labeling outputs
+# =============================================================================
+autodistill_output/
+grounded_sam_output/
+
+# =============================================================================
+# YOLO weights auto-downloaded by ultralytics
+# =============================================================================
+yolov8*.pt
+yolov8*.onnx
+yolo-world*.pt
+weights/
+
+# =============================================================================
+# Project-specific temporaries
+# =============================================================================
+_tmp_download/
+test_demo.wav
+results.json
+config.json
+setup_windows.bat
