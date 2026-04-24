@@ -23,7 +23,7 @@
 ![](https://raw.githubusercontent.com/mo992/Portfolio/main/Defect-Inspection-OCR/Results/Pitted-Surface-Result.png)
 </div>
 
-**OCR 流程**
+**OCR**
 <div align="center">
 
 ![](https://raw.githubusercontent.com/mo992/Portfolio/main/Defect-Inspection-OCR/Results/OCR-Result.png)
