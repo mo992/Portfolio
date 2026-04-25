@@ -1,45 +1,45 @@
 # Document Classification
 
-Product name: **Document Classification** (hyphenated: `document-classification`).
-Python package: `document_classification` (underscores — Python forbids hyphens in `import`).
+產品名稱:**Document Classification**(連字符:`document-classification`)。
+Python package:`document_classification`(底線 — Python 不允許 import 名稱含連字符)。
 
-## Responsibility
+## 職責
 
-Given an image, decide whether it should be treated as a **document** (OCR flow) or a **general image** (defect / object detection flow). The classifier fronts the rest of the server.
+接收影像,判定其應導向 **document** 流程(OCR pipeline)或 **general image** 流程(瑕疵 / 物件偵測 pipeline)。本模組為 server 對外請求的前置分類層。
 
-## Classes (one per module)
+## Class 架構(單一模組單一 class)
 
-| Module | Class | Concern |
+| Module | Class | 職責 |
 |---|---|---|
-| `gemini_client.py` | `GeminiVisionClient` | HTTP POST → Google Gemini `generateContent` API. Returns raw text only. |
-| `local_vlm_client.py` | `SmolVLMClient` | Local VLM fallback (SmolVLM-500M-Instruct). Used when `GOOGLE_API_KEY` is unset. Lazy-loads weights on first call. |
-| `classifier.py` | `DocumentImageClassifier` | Prompts the MLLM, parses the JSON reply into `ClassifyResult(label, confidence, reasoning)`. |
-| `dispatcher.py` | `ClassificationDispatcher` | Routes a classified image to the right next step: YOLO for images, frontend document pipeline for documents. |
-| `router.py` | `APIRouter` factory | HTTP endpoints: `POST /classify`, `POST /classify/dispatch`, `GET /classify/health`. |
-| `ui.py` | `APIRouter` factory | Serves the static upload page. |
+| `gemini_client.py` | `GeminiVisionClient` | 對 Google Gemini `generateContent` API 發送 HTTP POST,回傳純文字 response。 |
+| `local_vlm_client.py` | `SmolVLMClient` | Local VLM fallback(SmolVLM-500M-Instruct);於 `GOOGLE_API_KEY` 未設定時啟用,首次呼叫時 lazy load 權重。 |
+| `classifier.py` | `DocumentImageClassifier` | 對 MLLM 發送 prompt,將 JSON response 解析為 `ClassifyResult(label, confidence, reasoning)`。 |
+| `dispatcher.py` | `ClassificationDispatcher` | 依分類結果分派下游處理:image 導向 YOLO,document 導向前端 document pipeline。 |
+| `router.py` | `APIRouter` factory | HTTP endpoints:`POST /classify`、`POST /classify/dispatch`、`GET /classify/health`。 |
+| `ui.py` | `APIRouter` factory | 提供靜態上傳頁面。 |
 
-Composition happens in `server/app/main.py` — each class is instantiated once and injected into the routers.
+各 class 於 `server/app/main.py` 統一組裝,以 dependency injection 方式注入 router。
 
 ## Endpoints
 
-- `POST /classify` — body `{ imageBase64, mediaType }` → `{ label, confidence, reasoning }`.
-- `POST /classify/dispatch` — same body; also runs YOLO when `label == 'image'` and returns the detections inline. When `label == 'document'`, returns a redirect hint pointing at the frontend document flow.
-- `GET /classify/health` — `{ configured, model, dependencies }`.
-- `GET /classify/ui` — HTML demo: upload → dispatch → either visit `/detect/ui` or be told to open the frontend doc scene.
+- `POST /classify` — request body `{ imageBase64, mediaType }`,回傳 `{ label, confidence, reasoning }`。
+- `POST /classify/dispatch` — request body 同上;當 `label == 'image'` 時觸發 YOLO 偵測並於 response 中 inline 回傳結果,當 `label == 'document'` 時回傳前端 document flow 的 redirect 資訊。
+- `GET /classify/health` — 回傳 `{ configured, model, dependencies }`。
+- `GET /classify/ui` — HTML demo 頁面:上傳 → dispatch → 依分類結果導向 `/detect/ui` 或前端 document 頁面。
 
-## Configuration
+## 設定
 
-| Env | Default | Required |
+| Env | 預設 | 必填 |
 |---|---|---|
-| `GOOGLE_API_KEY` (or `GEMINI_API_KEY`) | — | no — when unset, the classifier falls back to a local SmolVLM model |
-| `GEMINI_MODEL` | `gemini-2.5-flash` | no |
-| `LOCAL_VLM_MODEL` | `HuggingFaceTB/SmolVLM-500M-Instruct` | no — override the local fallback's HF repo |
-| `FRONTEND_URL` | `http://localhost:5173` | no |
+| `GOOGLE_API_KEY`(或 `GEMINI_API_KEY`) | — | 否,未設定時 fallback 至 local SmolVLM |
+| `GEMINI_MODEL` | `gemini-2.5-flash` | 否 |
+| `LOCAL_VLM_MODEL` | `HuggingFaceTB/SmolVLM-500M-Instruct` | 否,可覆寫 local fallback 的 HF repo |
+| `FRONTEND_URL` | `http://localhost:5173` | 否 |
 
-### Fallback behaviour
+### Fallback 機制
 
-When `GOOGLE_API_KEY` is unset, `_get_vision_client()` in `app/main.py` returns a `SmolVLMClient` instead of `GeminiVisionClient`. The first `/classify` request then **lazy-loads** ~1 GB of SmolVLM weights from Hugging Face — this takes 2–5 minutes the first time and is logged. Subsequent requests are served from the in-process model (no network). Load + inference are wrapped in `asyncio.to_thread` so the event loop isn't blocked.
+`GOOGLE_API_KEY` 未設定時,`app/main.py` 中的 `_get_vision_client()` 回傳 `SmolVLMClient` 取代 `GeminiVisionClient`。首次 `/classify` request 觸發 SmolVLM 權重 lazy load(自 Hugging Face 下載,約 1 GB),首次載入耗時約 2–5 分鐘,過程記錄於 log。後續 request 由 in-process model 處理,不再涉及網路 I/O。權重載入與 inference 均以 `asyncio.to_thread` 包裝,避免阻塞 event loop。
 
-## Testing
+## 測試
 
-`pytest document_classification/tests -q` — injects a fake Gemini client, exercises all parse branches, hits the router end-to-end. The fallback path is covered by `tests/test_routes.py::test_classify_without_api_key_uses_local_fallback`, which injects a fake `SmolVLMClient` so CI doesn't download real weights.
+`pytest document_classification/tests -q` — 注入 fake Gemini client,涵蓋所有 parse 分支與 end-to-end router 測試。Fallback 路徑於 `tests/test_routes.py::test_classify_without_api_key_uses_local_fallback` 驗證,該測試注入 fake `SmolVLMClient`,避免 CI 環境實際下載權重。
