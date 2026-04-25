@@ -1,0 +1,66 @@
+{
+  "id": "defect-mini",
+  "name": "Defect Mini (synthetic)",
+  "description": "5 synthetic surface-defect scenes used for Day 1 baseline evaluation.",
+  "samples": [
+    {
+      "id": "scene-001",
+      "imagePath": "scene-001.png",
+      "groundTruth": [
+        {
+          "label": "scratch",
+          "score": 1.0,
+          "bbox": { "x": 40, "y": 30, "width": 80, "height": 12 }
+        }
+      ]
+    },
+    {
+      "id": "scene-002",
+      "imagePath": "scene-002.png",
+      "groundTruth": [
+        {
+          "label": "pit",
+          "score": 1.0,
+          "bbox": { "x": 120, "y": 80, "width": 22, "height": 22 }
+        },
+        {
+          "label": "pit",
+          "score": 1.0,
+          "bbox": { "x": 200, "y": 150, "width": 18, "height": 20 }
+        }
+      ]
+    },
+    {
+      "id": "scene-003",
+      "imagePath": "scene-003.png",
+      "groundTruth": [
+        {
+          "label": "crack",
+          "score": 1.0,
+          "bbox": { "x": 10, "y": 10, "width": 240, "height": 8 }
+        }
+      ]
+    },
+    {
+      "id": "scene-004",
+      "imagePath": "scene-004.png",
+      "groundTruth": []
+    },
+    {
+      "id": "scene-005",
+      "imagePath": "scene-005.png",
+      "groundTruth": [
+        {
+          "label": "scratch",
+          "score": 1.0,
+          "bbox": { "x": 50, "y": 200, "width": 150, "height": 6 }
+        },
+        {
+          "label": "pit",
+          "score": 1.0,
+          "bbox": { "x": 170, "y": 50, "width": 16, "height": 18 }
+        }
+      ]
+    }
+  ]
+}

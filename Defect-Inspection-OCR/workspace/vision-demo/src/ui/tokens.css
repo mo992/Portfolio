@@ -1,0 +1,68 @@
+:root {
+  --primary:        oklch(0.60 0.15 35);
+  --primary-hover:  oklch(0.53 0.15 35);
+  --primary-soft:   oklch(0.96 0.03 35);
+  --primary-border: oklch(0.86 0.10 35);
+  --primary-fg:     #ffffff;
+
+  --bg:            #fbfaf7;
+  --surface:       #ffffff;
+  --surface-2:     #f5f3ee;
+  --surface-3:     #ede9e0;
+  --border:        #e5e1d6;
+  --border-strong: #c9c3b4;
+
+  --text:   #1c1a14;
+  --text-2: #45413a;
+  --text-3: #6b6656;
+  --text-4: #8a8574;
+
+  --sev-critical: oklch(0.58 0.17 25);
+  --sev-high:     oklch(0.66 0.15 65);
+  --sev-medium:   oklch(0.62 0.14 145);
+  --sev-info:     oklch(0.58 0.14 258);
+  --sev-purple:   oklch(0.56 0.15 310);
+  --sev-pink:     oklch(0.62 0.17 355);
+
+  --success: oklch(0.55 0.13 150);
+  --danger:  oklch(0.55 0.18 25);
+
+  --code-bg: #0d1117;
+  --code-fg: #c9d1d9;
+
+  --fs-xs:   13.2px;
+  --fs-sm:   15.4px;
+  --fs-base: 17.6px;
+  --fs-lg:   19.8px;
+  --fs-xl:   24.2px;
+  --fs-2xl:  30.8px;
+  --fs-3xl:  37.4px;
+
+  --lh-body:  1.55;
+  --lh-tight: 1.25;
+
+  --radius-sm: 6px;
+  --radius:    10px;
+  --radius-lg: 14px;
+
+  --shadow-sm: 0 1px 2px rgba(28,26,20,0.05), 0 1px 0 rgba(28,26,20,0.03);
+  --shadow:    0 4px 14px -4px rgba(28,26,20,0.12), 0 2px 4px rgba(28,26,20,0.04);
+
+  --font-sans: "Inter", "Noto Sans TC", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  font-feature-settings: "cv11", "ss01", "ss03";
+}
+
+code, pre, kbd, samp {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}

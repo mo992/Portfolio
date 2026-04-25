@@ -1,0 +1,9 @@
+# 這些是選用的重量級套件,只有要跑自動打標時才需要裝。
+# 第一次使用會下載 GroundingDINO + SAM 權重(約 1–2 GB)。
+#
+#   pip install -r defect_detection/autodistill_labeling/requirements.txt
+#
+
+autodistill==0.1.28
+autodistill-grounded-sam==0.1.5
+supervision==0.24.0

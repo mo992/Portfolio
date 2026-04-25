@@ -1,0 +1,67 @@
+{
+  "id": "doc-mini",
+  "name": "Document Mini (synthetic layouts)",
+  "description": "4 synthetic document pages covering title/header/text/table for layout + OCR evaluation.",
+  "samples": [
+    {
+      "id": "doc-001",
+      "imagePath": "doc-001.png",
+      "groundTruth": [
+        { "label": "title", "score": 1.0, "bbox": { "x": 40, "y": 30, "width": 400, "height": 40 } },
+        { "label": "text", "score": 1.0, "bbox": { "x": 40, "y": 90, "width": 400, "height": 120 } }
+      ],
+      "meta": {
+        "regions": [
+          { "label": "title", "text": "Quarterly Report", "bbox": { "x": 40, "y": 30, "width": 400, "height": 40 } },
+          { "label": "text", "text": "The following summary outlines the company's performance.", "bbox": { "x": 40, "y": 90, "width": 400, "height": 120 } }
+        ]
+      }
+    },
+    {
+      "id": "doc-002",
+      "imagePath": "doc-002.png",
+      "groundTruth": [
+        { "label": "header", "score": 1.0, "bbox": { "x": 40, "y": 40, "width": 300, "height": 30 } },
+        { "label": "text", "score": 1.0, "bbox": { "x": 40, "y": 80, "width": 400, "height": 90 } },
+        { "label": "table", "score": 1.0, "bbox": { "x": 40, "y": 190, "width": 400, "height": 120 } }
+      ],
+      "meta": {
+        "regions": [
+          { "label": "header", "text": "Revenue Overview", "bbox": { "x": 40, "y": 40, "width": 300, "height": 30 } },
+          { "label": "text", "text": "Revenue grew by 12% year over year.", "bbox": { "x": 40, "y": 80, "width": 400, "height": 90 } },
+          { "label": "table", "text": "Q1 100\nQ2 110\nQ3 120", "bbox": { "x": 40, "y": 190, "width": 400, "height": 120 } }
+        ]
+      }
+    },
+    {
+      "id": "doc-003",
+      "imagePath": "doc-003.png",
+      "groundTruth": [
+        { "label": "title", "score": 1.0, "bbox": { "x": 40, "y": 30, "width": 500, "height": 50 } },
+        { "label": "figure", "score": 1.0, "bbox": { "x": 60, "y": 120, "width": 200, "height": 150 } },
+        { "label": "caption", "score": 1.0, "bbox": { "x": 60, "y": 280, "width": 200, "height": 20 } }
+      ],
+      "meta": {
+        "regions": [
+          { "label": "title", "text": "Architecture Diagram", "bbox": { "x": 40, "y": 30, "width": 500, "height": 50 } },
+          { "label": "figure", "text": "", "bbox": { "x": 60, "y": 120, "width": 200, "height": 150 } },
+          { "label": "caption", "text": "Figure 1 Pipeline", "bbox": { "x": 60, "y": 280, "width": 200, "height": 20 } }
+        ]
+      }
+    },
+    {
+      "id": "doc-004",
+      "imagePath": "doc-004.png",
+      "groundTruth": [
+        { "label": "header", "score": 1.0, "bbox": { "x": 40, "y": 40, "width": 300, "height": 30 } },
+        { "label": "list", "score": 1.0, "bbox": { "x": 40, "y": 90, "width": 400, "height": 160 } }
+      ],
+      "meta": {
+        "regions": [
+          { "label": "header", "text": "Action Items", "bbox": { "x": 40, "y": 40, "width": 300, "height": 30 } },
+          { "label": "list", "text": "1. Kick off pilot\n2. Review with legal\n3. Launch Q4", "bbox": { "x": 40, "y": 90, "width": 400, "height": 160 } }
+        ]
+      }
+    }
+  ]
+}
